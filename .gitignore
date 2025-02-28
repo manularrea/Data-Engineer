@@ -174,4 +174,4 @@ poetry.toml
 pyrightconfig.json
 
 # Data files
-./storage/*
+storage/*
