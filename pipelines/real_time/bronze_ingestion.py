@@ -8,6 +8,10 @@ import subprocess
 
 RAW_DATA_FILE = "./storage/realtime_raw.csv"
 
+print(f"📂 Prefect is running in: {os.getcwd()}")
+print(f"📄 Saving file to: {RAW_DATA_FILE}")
+
+
 def fetch_realtime_data():
     """Fetch BTC/USD real-time price, volume, and order book data from Binance API."""
     url = "https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT"  # Full market data
