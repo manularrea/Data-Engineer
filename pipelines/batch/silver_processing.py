@@ -5,29 +5,23 @@ import os
 RAW_DATA_FILE = "./storage/batch_raw.csv"
 CLEANED_DATA_FILE = "./storage/batch_cleaned.csv"
 
-# Load batch data
-df = pd.read_csv(RAW_DATA_FILE)
+def process_batch_data():
+    """Clean and transform historical batch data into a structured format."""
+    df = pd.read_csv(RAW_DATA_FILE)
 
-# Debug: Print column names to verify structure
-print(f"✅ Columns in batch dataset: {df.columns.tolist()}")
+    # Standardize timestamps
+    df["published_date"] = pd.to_datetime(df["published_date"], errors='coerce')
 
-# Ensure 'published_date' column exists (acts as timestamp)
-expected_column = "published_date"
-if expected_column not in df.columns:
-    raise KeyError(f"❌ Column '{expected_column}' not found. Found columns: {df.columns.tolist()}")
+    # Drop rows with missing timestamps
+    df.dropna(subset=["published_date"], inplace=True)
 
-# Convert published_date to datetime
-df["published_date"] = pd.to_datetime(df["published_date"], errors='coerce')
+    # Extract relevant columns
+    df_cleaned = df[["published_date", "title", "topic", "country"]]
 
-# Drop rows where conversion failed
-df.dropna(subset=["published_date"], inplace=True)
+    os.makedirs(os.path.dirname(CLEANED_DATA_FILE), exist_ok=True)
 
-# Extract only relevant columns for further processing
-df_cleaned = df[["published_date", "title", "topic", "country"]]
+    # Save cleaned data
+    df_cleaned.to_csv(CLEANED_DATA_FILE, index=False)
+    print(f"✅ Cleaned batch data saved to {CLEANED_DATA_FILE}.")
 
-# Ensure storage directory exists
-os.makedirs(os.path.dirname(CLEANED_DATA_FILE), exist_ok=True)
-
-# Save cleaned data
-df_cleaned.to_csv(CLEANED_DATA_FILE, index=False)
-print(f"✅ Cleaned batch data saved to {CLEANED_DATA_FILE}.")
+process_batch_data()

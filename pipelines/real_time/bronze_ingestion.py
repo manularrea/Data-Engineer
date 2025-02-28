@@ -29,3 +29,5 @@ def fetch_realtime_data():
     # Append new data
     df.to_csv(RAW_DATA_FILE, mode='a', header=not os.path.exists(RAW_DATA_FILE), index=False)
     print(f"✅ Fetched: {data}")
+
+fetch_realtime_data()

@@ -1,0 +1,10 @@
+name: Batch Pipeline Deployment
+flow_name: batch_pipeline
+entrypoint: pipelines/batch/batch_orchestrator.py:batch_pipeline
+description: "Automated batch pipeline running every hour"
+parameters: {}
+schedule:
+  cron: "0 * * * *"  # Runs every hour
+tags: ["batch"]
+work_pool:
+  name: "default"

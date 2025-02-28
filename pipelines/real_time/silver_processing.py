@@ -21,3 +21,5 @@ def process_realtime_data():
     # Save cleaned data
     df.to_csv(CLEANED_DATA_FILE, index=False)
     print("✅ Cleaned real-time data.")
+
+process_realtime_data()

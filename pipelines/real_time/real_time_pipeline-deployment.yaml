@@ -1,0 +1,10 @@
+name: Real-Time Pipeline Deployment
+flow_name: real_time_pipeline
+entrypoint: pipelines/real_time/real_time_orchestrator.py:real_time_pipeline
+description: "Automated real-time pipeline running every 30 seconds"
+parameters: {}
+schedule:
+  cron: "*/30 * * * *"  # Runs every 30 seconds
+tags: ["real-time"]
+work_pool:
+  name: "default"
