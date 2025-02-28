@@ -3,7 +3,6 @@ import pandas as pd
 from datetime import datetime
 import os
 import subprocess
-from apscheduler.schedulers.background import BackgroundScheduler
 
 # Bronze: Simulate periodic API calls (e.g., every 30 seconds) to ingest raw BTC/USD market data
 
