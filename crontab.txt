@@ -1,3 +1,0 @@
-0 0 * * * python3 ./pipelines/batch/bronze_ingestion.py
-5 0 * * * python3 ./pipelines/batch/silver_processing.py
-10 0 * * * python3 ./pipelines/batch/gold_aggregation.py
