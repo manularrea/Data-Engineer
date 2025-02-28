@@ -12,20 +12,8 @@ from database import save_dataframe
 
 CLEANED_DATA_FILE = "./storage/realtime_cleaned.csv"
 
-def wait_for_file(file_path, timeout=10):
-    """Wait for a file to be created before proceeding."""
-    for _ in range(timeout):
-        if os.path.exists(file_path):
-            return True
-        print(f"⏳ Waiting for {file_path} to be created...")
-        time.sleep(1)
-    raise FileNotFoundError(f"❌ Error: {file_path} was not found after {timeout} seconds.")
-
 def aggregate_realtime_data():
     """Compute moving averages, volume summaries, and perform data quality checks."""
-
-    # Wait until Silver Layer creates the cleaned file
-    wait_for_file(CLEANED_DATA_FILE)
 
     df = pd.read_csv(CLEANED_DATA_FILE)
 
