@@ -1,7 +1,7 @@
 import sqlite3
 import os
 
-DB_FILE = "../storage/market_data.db"
+DB_FILE = "./storage/market_data.db"
 
 def get_connection():
     """Establish SQLite connection and create tables if they don’t exist."""
